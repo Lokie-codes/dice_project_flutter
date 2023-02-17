@@ -11,7 +11,7 @@ void main() {
           title: const Text('Role Dice 🎲'),
           backgroundColor: Colors.red,
         ),
-        body: DicePage(),
+        body: const DicePage(),
       ),
     ),
   );
@@ -75,7 +75,13 @@ class _DicePageState extends State<DicePage> {
               roll();
             },
             style: ElevatedButton.styleFrom(
-              textStyle: const TextStyle(fontSize: 25.0),      
+              textStyle: const TextStyle(
+                fontSize: 22.0,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'RobotoSlab',
+              ),
+              backgroundColor: Colors.white,
+              foregroundColor: Colors.red,
             ),
             child: const Padding(
               padding: EdgeInsets.all(16.0),
