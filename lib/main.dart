@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -25,41 +27,64 @@ class DicePage extends StatefulWidget {
 class _DicePageState extends State<DicePage> {
   int leftDiceNumber = 1;
   int rightDiceNumber = 1;
+
+  void roll() {
+    setState(() {
+      leftDiceNumber = Random().nextInt(5) + 1;
+      rightDiceNumber = Random().nextInt(5) + 1;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(18.0),
-        child: Row(
-          children: <Widget>[
-            Expanded(
-              child: TextButton(
-                onPressed: () {
-                  setState(() {
-                    leftDiceNumber = 5;
-                    rightDiceNumber = 5;
-                  });                  
-                },
-                child: Image.asset(
-                  'images/dice$leftDiceNumber.png',
-                ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.all(18.0),
+              child: Row(
+                children: <Widget>[
+                  Expanded(
+                    child: TextButton(
+                      onPressed: () {
+                        roll();
+                      },
+                      child: Image.asset(
+                        'images/dice$leftDiceNumber.png',
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: TextButton(
+                      onPressed: () {
+                        roll();
+                      },
+                      child: Image.asset(
+                        'images/dice$rightDiceNumber.png',
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
-            Expanded(
-              child: TextButton(
-                onPressed: () {
-                 setState(() {
-                    leftDiceNumber = 5;
-                    rightDiceNumber = 5;
-                  });
-                },
-                child: Image.asset(
-                  'images/dice$rightDiceNumber.png',
-                ),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              roll();
+            },
+            style: ElevatedButton.styleFrom(
+              textStyle: const TextStyle(fontSize: 25.0),      
+            ),
+            child: const Padding(
+              padding: EdgeInsets.all(16.0),
+              child: Text(
+                'Roll now',
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
